@@ -1,12 +1,7 @@
 package com.exemplo.wsdlcliente.clients;
 
-public class PaisClient {
-
-}
-package com.example.wsdlcliente.clients;
-
-import com.example.wsdlcliente.wsdl.GetPaisRequest;
-import com.example.wsdlcliente.wsdl.GetPaisResponse;
+import com.exemplo.wsdlcliente.wsdl.GetPaisRequest;
+import com.exemplo.wsdlcliente.wsdl.GetPaisResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +20,9 @@ public class PaisClient extends WebServiceGatewaySupport {
         log.info("Obtendo dados sobre: " + pais);
 
         GetPaisResponse response = (GetPaisResponse) getWebServiceTemplate()
-                .marshalSendAndReceive("http://localhost:8080/ws/paises", request,
+                // cast para explicitamente receber o objeti 
+                .marshalSendAndReceive("http://localhost:8080/ws/paises", request, // passando o request com o nome do pais
+                // .marshalSendAndReceive - cria, envia e recebe
                         new SoapActionCallback(
                                 "http://exemplo.com/wsdlservidor/assets/GetPaisRequest"));
 
